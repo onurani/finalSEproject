@@ -29,7 +29,11 @@ Team member 4 "Sean F" | "Percentage of Contribution to The Project"
 //tehm below the main function////
 /////////////////////////////////
 
-int main(){
+int main()
+{
+	int randomNum;
+
+
 	//usertext is a 2d array 
 	FILE* infile = NULL;
 	const int USER_TEXT_LIMIT = 50;
@@ -41,9 +45,12 @@ int main(){
 		fscanf(infile, "%s", usertext[i]);
 	}
 	
-	for(int j = 0; j < numrow; j++){
+	/*for(int j = 0; j < numrow; j++){
 		printf("%s\n", usertext[j]);
-	}
+	}*/
+
+	randomNum = (rand() % 1000) + 1;
+	printf("Random word is %s", usertext[randomNum]);
 		
 	fclose(infile);
 	
