@@ -25,6 +25,7 @@ Team member 4 "Sean F" | "Percentage of Contribution to The Project"
 ////////////////////
 
 void draw(int x, int y, char use);
+void drawWord(int x, int y, char word[50]);
 void drawMaze();
 /////////////////////////////////////
 //User Defined Functions Prototype//
@@ -36,10 +37,10 @@ int main()
 {
 	int randomNum;
 	int randomStartPositionX;
+	int i;
 
 
 	initscr();
-    refresh();
 
 	//usertext is a 2d array 
 	FILE* infile = NULL;
@@ -47,28 +48,28 @@ int main()
 	int numrow = 1000;
 	char usertext[numrow][USER_TEXT_LIMIT];
 	infile = fopen("wordList.txt", "r");
+
+
+	drawMaze();
+
 	
-	do{
 	srand(time(NULL));
 	randomNum = (rand() % 1000) + 1;//getting random word
 
-	for(int i = 0; i < numrow; i++){
+	for(i = 0; i < numrow; i++){
 		fscanf(infile, "%s", usertext[i]);
 		if(i == randomNum)
 		{
-			printf("Random word is %s", usertext[randomNum]);//print randomword
-			draw(1, 1, usertext[randomNum]);
+			drawWord(5, 10, usertext[i]);
+    		mvaddch(5, 10, usertext[i]);
+			break;
 		}
 	}
 
 
-
-	drawMaze();
-	}while(1);
-	printf("Random word is %s", usertext[randomNum]);//print randomword
 		
 	fclose(infile);
-	
+    refresh();
 	return 0;
 }
 
@@ -100,7 +101,13 @@ void draw(int x, int y, char use)
     mvaddch(y, x, use);
     refresh();
 }
-
+void drawWord(int x, int y, char word[50])
+{
+    x = abs(x);
+    y = abs(y);
+    mvaddch(y, x, word[50]);
+    refresh();
+}
 ///////////////////////////////////////
 //User Defined Functions' Definition//
 /////////////////////////////////////
