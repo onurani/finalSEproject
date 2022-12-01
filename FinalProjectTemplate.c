@@ -30,7 +30,6 @@ char word[50];
 
 void draw(int x, int y, char use);
 void drawWord(int x, int y);
-void drawMaze();
 /////////////////////////////////////
 //User Defined Functions Prototype//
 //List prototypes here and define//
@@ -39,64 +38,49 @@ void drawMaze();
 
 int main()
 {
+	initscr();
 	int randomNum;
 	int randomStartPositionX;
 	int i;
-
-    printf("test");
-	initscr();
-    refresh();
-	//usertext is a 2d array 
+    int yMax, xMax;
 	FILE* infile = NULL;
 	const int USER_TEXT_LIMIT = 50;
 	int numrow = 1000;
 	char usertext[numrow][USER_TEXT_LIMIT];
 	infile = fopen("wordList.txt", "r");
+    int sizeOfYMax;
+    int sizeOfXMax;
 
 
-	drawMaze();
-    mvaddstr(1, 1, "test");
-	
+    getmaxyx(stdscr, yMax, xMax);
+
+    WINDOW *win = newwin(20, 50, 1, 1);
+
+    sizeOfXMax = (xMax /2) - (xMax / 4);
+    sizeOfYMax = (yMax / 2) - (yMax / 4);
+
 	srand(time(NULL));
-	randomNum = (rand() % 1000) + 1;//getting random word
+	randomNum = (rand() % numrow) + 1;//getting random word
+
+    box(win, 0, 0);
+
+    //mvwprintw(win,0, 2, "Test");
+
+	mvwprintw(win, 0, 5, "%d", randomNum);
 	for(i = 0; i < numrow; i++){
 		fscanf(infile, "%s", word[50]);
         word[50] = *usertext[i];
 		if(i == randomNum)
 		{
-			drawWord(5, 10);
-			break;
+			mvwprintw(win, 0, 5, "testv2");
 		}
 	}
-    printf("Random word is: %s", usertext[i]);
-
+    wgetch(win);
 
 		
 	fclose(infile);
     endwin();
 	return 0;
-}
-
-void drawMaze()
-{
-        for(int i = 0; i < 23; i++)
-        {
-            draw(0, i, '|');
-        }
-        //drawing right wall
-        for(int i = 0; i < 23; i++)
-        {
-            draw(80 ,i,'|');
-        }
-        //drawing ceiling
-        for(int i = 0; i < 80; i++)
-        {
-            draw(i+1, 24, '-');
-        }
-        for(int i = 0; i < 80; i++)
-        {
-            draw(i, 24, '-');
-        }
 }
 void draw(int x, int y, char use)
 {
