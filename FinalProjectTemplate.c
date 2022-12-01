@@ -60,8 +60,8 @@ int main()
 	srand(time(NULL));
 	randomNum = (rand() % 1000) + 1;//getting random word
 	for(i = 0; i < numrow; i++){
-		fscanf(infile, "%s", usertext[i]);
-        word[50] = usertext[i];
+		fscanf(infile, "%s", word[50]);
+        word[50] = *usertext[i];
 		if(i == randomNum)
 		{
 			drawWord(5, 10);
