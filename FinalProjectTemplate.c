@@ -68,18 +68,20 @@ int main()
 
 	srand(time(NULL));
 	randomNum = (rand() % numrow) + 1;//getting random word
+    srand(time(NULL));
+    randomStartPositionX = (rand() % 50) + 1;
 
     box(win, 0, 0);
 
     //mvwprintw(win,0, 2, "Test");
 
-	mvwprintw(win, 0, 5, "%d", randomNum);
+	//mvwprintw(win, 0, 5, "%d", randomNum);
     
 	for(i = 0; i < 1000; i++){
 		//fscanf(infile, "%s", word[50]);
 		if(i == randomNum)
 		{
-			mvwprintw(win, 0, randomNum, "testv2");
+			mvwprintw(win, 0, randomStartPositionX, "testv2");
 		}
 	}
     
