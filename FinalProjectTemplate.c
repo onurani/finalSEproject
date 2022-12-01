@@ -72,19 +72,21 @@ int main()
     randomStartPositionX = (rand() % 50) + 1;
 
     box(win, 0, 0);
+	refresh();
 
     //mvwprintw(win,0, 2, "Test");
 
 	//mvwprintw(win, 0, 5, "%d", randomNum);
     
-	for(i = 0; i < 1000; i++){
-		//fscanf(infile, "%s", word[50]);
-    	sscanf("%s\n", word);
+	/*for(i = 0; i < 1000; i++){
+		fscanf(infile, "%s\n", word[50]);
+    	//sscanf("%s\n", word);
 		if(i == randomNum)
 		{
-			mvwprintw(win, 0, randomStartPositionX, "testv2");
+			mvwprintw(win, 0, randomStartPositionX, "%s", word);
+			refresh();
 		}
-	}
+	}*/
     
     wgetch(win);
 
