@@ -79,6 +79,7 @@ int main()
     
 	for(i = 0; i < 1000; i++){
 		//fscanf(infile, "%s", word[50]);
+    	sscanf("%s\n", word);
 		if(i == randomNum)
 		{
 			mvwprintw(win, 0, randomStartPositionX, "testv2");
