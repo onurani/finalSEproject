@@ -43,11 +43,18 @@ int main()
 	int randomStartPositionX;
 	int i;
     int yMax, xMax;
-	FILE* infile = NULL;
+
+
 	const int USER_TEXT_LIMIT = 50;
 	int numrow = 1000;
 	char usertext[numrow][USER_TEXT_LIMIT];
+
+
+
+	FILE* infile = NULL;
 	infile = fopen("wordList.txt", "r");
+
+
     int sizeOfYMax;
     int sizeOfXMax;
 
@@ -67,14 +74,15 @@ int main()
     //mvwprintw(win,0, 2, "Test");
 
 	mvwprintw(win, 0, 5, "%d", randomNum);
-	for(i = 0; i < numrow; i++){
-		fscanf(infile, "%s", word[50]);
-        word[50] = *usertext[i];
+    
+	for(i = 0; i < 1000; i++){
+		//fscanf(infile, "%s", word[50]);
 		if(i == randomNum)
 		{
-			mvwprintw(win, 0, 5, "testv2");
+			mvwprintw(win, 0, randomNum, "testv2");
 		}
 	}
+    
     wgetch(win);
 
 		
