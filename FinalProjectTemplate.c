@@ -18,6 +18,10 @@ Team member 4 "Sean F" | "Percentage of Contribution to The Project"
 #include <curses.h>
 #include <ncurses.h>
 
+
+//global
+char word[50];
+
 //add more here////
 
 //////////////////////
@@ -25,7 +29,7 @@ Team member 4 "Sean F" | "Percentage of Contribution to The Project"
 ////////////////////
 
 void draw(int x, int y, char use);
-void drawWord(int x, int y, char word[50]);
+void drawWord(int x, int y);
 void drawMaze();
 /////////////////////////////////////
 //User Defined Functions Prototype//
@@ -55,16 +59,16 @@ int main()
 	
 	srand(time(NULL));
 	randomNum = (rand() % 1000) + 1;//getting random word
-
 	for(i = 0; i < numrow; i++){
 		fscanf(infile, "%s", usertext[i]);
+        word[50] = usertext[i];
 		if(i == randomNum)
 		{
-			drawWord(5, 10, usertext[i]);
-    		mvaddch(5, 10, usertext[i]);
+			drawWord(5, 10);
 			break;
 		}
 	}
+    printf("Random word is: %s", usertext[i]);
 
 
 		
@@ -101,7 +105,7 @@ void draw(int x, int y, char use)
     mvaddch(y, x, use);
     refresh();
 }
-void drawWord(int x, int y, char word[50])
+void drawWord(int x, int y)
 {
     x = abs(x);
     y = abs(y);
