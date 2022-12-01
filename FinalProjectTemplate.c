@@ -43,9 +43,9 @@ int main()
 	int randomStartPositionX;
 	int i;
 
-
+    printf("test");
 	initscr();
-
+    refresh();
 	//usertext is a 2d array 
 	FILE* infile = NULL;
 	const int USER_TEXT_LIMIT = 50;
@@ -55,7 +55,7 @@ int main()
 
 
 	drawMaze();
-
+    mvaddstr(1, 1, "test");
 	
 	srand(time(NULL));
 	randomNum = (rand() % 1000) + 1;//getting random word
@@ -73,7 +73,7 @@ int main()
 
 		
 	fclose(infile);
-    refresh();
+    endwin();
 	return 0;
 }
 
@@ -109,7 +109,7 @@ void drawWord(int x, int y)
 {
     x = abs(x);
     y = abs(y);
-    mvaddch(y, x, word[50]);
+    mvaddstr(y, x, "test");
     refresh();
 }
 ///////////////////////////////////////
