@@ -77,7 +77,7 @@ int main()
 	srand(time(NULL));
 	randomNum = (rand() % numrow) + 1;//getting random word
     srand(time(NULL));
-    randomStartPositionX = (rand() % 50) + 1;
+    randomStartPositionX = (rand() % 40) + 1;
 
     box(win, 0, 0);
 	refresh();
@@ -106,10 +106,7 @@ void drawWord(int x, int y)
     mvaddstr(y, x, "test");
     refresh();
 }
-///////////////////////////////////////
-//User Defined Functions' Definition//
-/////////////////////////////////////
-// DO NOT MODIFY THIS FUNCTION!
+
 void trimws(char* str) {
 	int length = strlen(str);
 	int x;
