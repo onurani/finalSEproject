@@ -29,7 +29,7 @@ char word[50];
 //////////////////////
 //Struct Definition//
 ////////////////////
-
+void Start_Menu();
 void draw(int x, int y, char use);
 void drawWord(int x, int y);
 /////////////////////////////////////
@@ -47,6 +47,9 @@ void trimws(char* str);
 
 int main()
 {
+
+	//Start_Menu();
+
 	char* wordlist[MAXWORDS];
 	int wordcount = read_words(wordlist, "wordList.txt");
 
@@ -91,6 +94,22 @@ int main()
 	delwin(win);
     endwin();
 	return 0;
+}
+void Start_Menu()
+{
+	char answer;
+	printf("Hello, this is a typing game. you will need to type the words as they appear\n");
+	printf("Would you like to play the game?(y/n)\n");
+	scanf("%c", answer);
+	if(answer == 'y' || answer == 'Y')
+	{
+		printf("Good luck!\n");
+	}
+	else
+	{
+		printf("exiting game");
+		exit(0);
+	}
 }
 void draw(int x, int y, char use)
 {
