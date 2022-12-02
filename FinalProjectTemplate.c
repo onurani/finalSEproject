@@ -18,6 +18,8 @@ Team member 4 "Sean F" | "Percentage of Contribution to The Project"
 #include <curses.h>
 #include <ncurses.h>
 
+#define WORDLENGTH 15
+#define MAXWORDS 1000
 
 //global
 char word[50];
@@ -36,8 +38,19 @@ void drawWord(int x, int y);
 //tehm below the main function////
 /////////////////////////////////
 
+
+int read_words(char* WL[MAXWORDS], char* file_name);
+
+
+void trimws(char* str);
+
+
 int main()
 {
+	char* wordlist[MAXWORDS];
+	int wordcount = read_words(wordlist, "wordList.txt");
+
+
 	initscr();
 	int randomNum;
 	int randomStartPositionX;
@@ -48,11 +61,6 @@ int main()
 	const int USER_TEXT_LIMIT = 50;
 	int numrow = 1000;
 	char usertext[numrow][USER_TEXT_LIMIT];
-
-
-
-	FILE* infile = NULL;
-	infile = fopen("wordList.txt", "r");
 
 
     int sizeOfYMax;
@@ -74,24 +82,13 @@ int main()
     box(win, 0, 0);
 	refresh();
 
-    //mvwprintw(win,0, 2, "Test");
-
-	//mvwprintw(win, 0, 5, "%d", randomNum);
+	mvwprintw(win, 1, randomStartPositionX, "%s", wordlist[randomNum]);
+	wrefresh(win);
     
-	/*for(i = 0; i < 1000; i++){
-		fscanf(infile, "%s\n", word[50]);
-    	//sscanf("%s\n", word);
-		if(i == randomNum)
-		{
-			mvwprintw(win, 0, randomStartPositionX, "%s", word);
-			refresh();
-		}
-	}*/
-    
-    wgetch(win);
+    getch();
 
 		
-	fclose(infile);
+	delwin(win);
     endwin();
 	return 0;
 }
@@ -112,3 +109,34 @@ void drawWord(int x, int y)
 ///////////////////////////////////////
 //User Defined Functions' Definition//
 /////////////////////////////////////
+// DO NOT MODIFY THIS FUNCTION!
+void trimws(char* str) {
+	int length = strlen(str);
+	int x;
+	if (length == 0) return;
+	x = length - 1;
+	while (isspace(str[x]) && (x >= 0)) {
+		str[x] = '\0';
+		x -= 1;
+	}
+}
+
+int read_words(char* WL[MAXWORDS], char* file_name)
+{
+	int numread = 0;
+	char line[WORDLENGTH];
+	char *p;
+	FILE* fp = fopen(file_name, "r");
+	while (!feof(fp)) {
+		p = fgets(line, WORDLENGTH, fp);
+		if (p != NULL) 
+		{
+			trimws(line);
+			WL[numread] = (char *)malloc(strlen(line) + 1);
+			strcpy(WL[numread], line);
+			numread++;
+		}
+	}
+	fclose(fp);
+	return numread;
+}
