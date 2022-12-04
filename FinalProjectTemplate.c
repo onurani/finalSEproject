@@ -36,8 +36,7 @@ void drawWord(int x, int y);
 //User Defined Functions Prototype//
 //List prototypes here and define//
 //tehm below the main function////
-/////////////////////////////////
-
+///////////////////////////////////
 
 int read_words(char* WL[MAXWORDS], char* file_name);
 
