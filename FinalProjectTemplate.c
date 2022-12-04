@@ -60,6 +60,13 @@ int main()
     int yMax, xMax;
 
 
+<<<<<<< Updated upstream
+=======
+int main(){
+	//usertext is a 2d array 
+	printf("Hello,mthis is a typing game. You will need to type the words as they appear Would you like to play or add a word? You currently have 1 words that to be used\n");
+	FILE* infile = NULL;
+>>>>>>> Stashed changes
 	const int USER_TEXT_LIMIT = 50;
 	int numrow = 1000;
 	char usertext[numrow][USER_TEXT_LIMIT];
