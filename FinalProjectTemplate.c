@@ -156,7 +156,7 @@ int read_words(char* WL[MAXWORDS], char* file_name)
 	fclose(fp);
 	return numread;
 }
-/*void clock(){
+void clock(){
     int true=1;
     time_t seconds;
     seconds = time(NULL);
@@ -170,4 +170,3 @@ int read_words(char* WL[MAXWORDS], char* file_name)
             break;
         }
     }
-}*/
