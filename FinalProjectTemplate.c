@@ -162,3 +162,17 @@ int read_words(char* WL[MAXWORDS], char* file_name)
 	fclose(fp);
 	return numread;
 }
+void clock(){
+    int true=1;
+    time_t seconds;
+    seconds = time(NULL);
+    while(true==1){
+        time_t currentSeconds;
+        currentSeconds = time(NULL);
+        if(currentSeconds!= seconds){
+            //update y
+            break;
+        }else if(currentSeconds<seconds){
+            break;
+        }
+    }
