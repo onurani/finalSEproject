@@ -48,7 +48,7 @@ void trimws(char* str);
 int main()
 {
 
-	//Start_Menu();
+	Start_Menu();
 
 	char* wordlist[MAXWORDS];
 	int wordcount = read_words(wordlist, "wordList.txt");
@@ -59,6 +59,12 @@ int main()
 	int randomStartPositionX;
 	int i;
     int yMax, xMax;
+	int workYLocations[17];
+
+	for(int b = 0; b < 17; b++)
+	{
+		workYLocations[b] = 1;
+	}
 
 
 	const int USER_TEXT_LIMIT = 50;
@@ -85,7 +91,7 @@ int main()
     box(win, 0, 0);
 	refresh();
 
-	mvwprintw(win, 1, randomStartPositionX, "%s", wordlist[randomNum]);
+	mvwprintw(win, workYLocations[0], randomStartPositionX, "%s", wordlist[randomNum]);
 	wrefresh(win);
     
     getch();
@@ -100,7 +106,7 @@ void Start_Menu()
 	char answer;
 	printf("Hello, this is a typing game. you will need to type the words as they appear\n");
 	printf("Would you like to play the game?(y/n)\n");
-	scanf("%c", answer);
+	scanf(" %c", &answer);
 	if(answer == 'y' || answer == 'Y')
 	{
 		printf("Good luck!\n");
