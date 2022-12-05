@@ -23,15 +23,18 @@ Team member 4 "Sean F" | "Percentage of Contribution to The Project"
 
 //global
 char word[50];
+int k =2;
 
 //add more here////
 
 //////////////////////
 //Struct Definition//
 ////////////////////
+
 void Start_Menu();
 void draw(int x, int y, char use);
 void drawWord(int x, int y);
+int game(int k);
 /////////////////////////////////////
 //User Defined Functions Prototype//
 //List prototypes here and define//
@@ -42,6 +45,7 @@ void drawWord(int x, int y);
 int read_words(char* WL[MAXWORDS], char* file_name);
 
 
+
 void trimws(char* str);
 
 
@@ -49,10 +53,33 @@ int main()
 {
 
 	Start_Menu();
+	while(1){
+		game(k);
+	}
+	/* seconds
+	if goes up then call function a-1
+	else 
+	call function of a
+	*/
+	
+}
 
+
+int game(int k){
+	for(int i = 0; i < 2; i++)
+	{
+
+			for(int b = 0; b < 2; b++)
+			{
+
+			}
+	}
+	
+	
+	
+	int totalSeconds=time(NULL);
 	char* wordlist[MAXWORDS];
 	int wordcount = read_words(wordlist, "wordList.txt");
-
 
 	initscr();
 	int randomNum;
@@ -60,10 +87,10 @@ int main()
 	int i;
     int yMax, xMax;
 	int workYLocations[17];
-
+	
 	for(int b = 0; b < 17; b++)
 	{
-		workYLocations[b] = 1;
+		workYLocations[b] = workYLocations[b] + 1;
 	}
 
 
@@ -84,21 +111,73 @@ int main()
     sizeOfYMax = (yMax / 2) - (yMax / 4);
 
 	srand(time(NULL));
+	
+    
+	//box(win, 0, 0);
+	//refresh();
+	//for(int c = 0; c <1000; c++){
+	srand(time(NULL));
 	randomNum = (rand() % numrow) + 1;//getting random word
     srand(time(NULL));
-    randomStartPositionX = (rand() % 40) + 1;
-
+	randomStartPositionX = (rand() % 40) + 1;
     box(win, 0, 0);
 	refresh();
-
-	mvwprintw(win, workYLocations[0], randomStartPositionX, "%s", wordlist[randomNum]);
+	//mvwprintw(win, workYLocations[0], randomStartPositionX, "%s", wordlist[randomNum]);
 	wrefresh(win);
-    
-    getch();
+		newWord:
+		srand(time(NULL));
+		randomNum = (rand() % numrow) + 1;
+		randomStartPositionX = (rand() % 40) + 1;
+		wordDisplay:
+		mvprintw(24, 4, "%s", "          ");
+		mvprintw(k, randomStartPositionX, "%s", wordlist[randomNum]);
+		wrefresh(win);
+		//}
+		//mvprintw(3, 3, "%s", "myteacher");
+		//}
+		 //getch();
+		int seconds=time(NULL);
+		char myuserinput[100];
+		mvprintw(22, 4, "%s", "TypeHere: ");
+		 getstr(myuserinput);
+		 //printf("I recieved the word %s from the user\n", myuserinput);
+		 wrefresh(win);
 
-		
-	delwin(win);
-    endwin();
+		 if(strcmp(myuserinput, wordlist[randomNum])==0){
+			//printf("The word matched this time\n");
+			mvprintw(k, randomStartPositionX, "%s", "            ");
+			//clrtoeol();
+			k+=(int)(time(NULL)-seconds);
+			for(i = 1; i < (int)(time(NULL) - seconds); i++){
+				mvprintw(k - i, (rand() % 40) + 1, "%s", wordlist[(rand() % numrow) + 1]);
+			}
+			if(k>=20){
+				endwin();
+				printf("YOUR TIME WAS: %d",time(NULL)-totalSeconds);
+				exit(0);
+			}
+			mvprintw(22, 14, "%s", "                        ");
+			wrefresh(win);
+			goto newWord;
+		 }
+		 else{
+			mvprintw(24, 4, "%s", "INCORRECT");
+			mvprintw(k, randomStartPositionX, "%s", "            ");
+			k+=(int)(time(NULL)-seconds);
+			if(k>=20){
+				endwin();
+				printf("YOUR TIME WAS: %d",time(NULL)-totalSeconds);
+				exit(0);
+			}
+			mvprintw(22, 14, "%s", "                        ");
+			wrefresh(win);
+			goto wordDisplay;
+		 }
+		 
+		 
+	wclear(win);
+	//delwin(win); //commenting cause it closes the window too soon
+    //endwin(); //same reason as above
 	return 0;
 }
 void Start_Menu()
